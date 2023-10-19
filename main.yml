@@ -1,0 +1,29 @@
+name: Python Hello World CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+      working-directory: ./app
+
+    - name: Run Python script
+      run: |
+        python python.py
+      working-directory: ./app
